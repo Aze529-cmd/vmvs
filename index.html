@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Văn Minh Việt Sử Hội</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dark: #8B6914;
+    --ink: #1A1208;
+    --parchment: #F5EDD8;
+    --parchment-dark: #EAD9B8;
+    --red: #8B1A1A;
+    --cream: #FBF6EC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    background-color: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  header {
+    background: var(--ink);
+    padding: 60px 24px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, #3D2A0A 0%, transparent 70%);
+  }
+  .header-ornament {
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+  }
+  .header-ornament::before, .header-ornament::after {
+    content: ''; display: block;
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+  }
+  .header-ornament::after {
+    background: linear-gradient(to left, transparent, var(--gold));
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 6vw, 58px);
+    color: var(--parchment);
+    line-height: 1.15;
+    position: relative;
+  }
+  header h1 span { color: var(--gold-light); font-style: italic; }
+  header p {
+    margin-top: 14px;
+    font-size: 15px;
+    color: #A0896A;
+    font-weight: 300;
+    letter-spacing: 1px;
+    position: relative;
+  }
+  .coin-divider {
+    margin: 30px auto 0;
+    width: 120px; height: 120px;
+    position: relative;
+  }
+  .coin-divider svg { width: 100%; height: 100%; }
+
+  /* PRODUCTS */
+  .products-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 24px;
+  }
+  .section-title {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: var(--ink);
+  }
+  .section-title p {
+    color: #8B7355;
+    font-size: 14px;
+    margin-top: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+  }
+
+  .product-card {
+    background: #fff;
+    border: 1px solid var(--parchment-dark);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(26,18,8,0.12);
+  }
+
+  .product-img {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--parchment);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-img svg {
+    width: 120px; height: 120px;
+    opacity: 0.85;
+  }
+  .product-img .era-badge {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: var(--ink);
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    padding: 4px 10px;
+    text-transform: uppercase;
+  }
+
+  .product-info {
+    padding: 20px;
+    border-top: 1px solid var(--parchment-dark);
+  }
+  .product-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .product-info p {
+    font-size: 13px;
+    color: #8B7355;
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--parchment-dark);
+  }
+  .price {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--red);
+    font-family: 'Playfair Display', serif;
+  }
+  .price span {
+    font-size: 12px;
+    font-weight: 400;
+    color: #8B7355;
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+  .buy-btn {
+    background: var(--ink);
+    color: var(--gold-light);
+    border: none;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 2px;
+  }
+  .buy-btn:hover { background: var(--gold-dark); color: var(--parchment); }
+
+  /* MODAL */
+  .modal-backdrop {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(26,18,8,0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-backdrop.active { display: flex; }
+  .modal {
+    background: var(--cream);
+    border: 1px solid var(--parchment-dark);
+    max-width: 480px;
+    width: 100%;
+    padding: 36px;
+    position: relative;
+    border-radius: 4px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none;
+    font-size: 22px; cursor: pointer;
+    color: #8B7355;
+  }
+  .modal h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 6px;
+    padding-right: 24px;
+  }
+  .modal-product-price {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--red);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 24px;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #8B7355;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--parchment-dark);
+    background: #fff;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    border-radius: 2px;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-group textarea { resize: vertical; min-height: 70px; }
+  .submit-btn {
+    width: 100%;
+    background: var(--ink);
+    color: var(--gold-light);
+    border: none;
+    padding: 14px;
+    font-size: 14px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-top: 8px;
+    transition: background 0.2s;
+  }
+  .submit-btn:hover { background: var(--gold-dark); }
+  .submit-btn:disabled { background: #aaa; cursor: not-allowed; }
+
+  /* SUCCESS STATE */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+  }
+  .success-msg.active { display: block; }
+  .success-icon {
+    width: 64px; height: 64px;
+    background: var(--parchment);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+  }
+  .success-msg h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .success-msg p { color: #8B7355; font-size: 14px; line-height: 1.7; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: #A0896A;
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  footer strong { color: var(--gold); }
+
+  /* Decoration line */
+  .gold-line {
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto;
+    max-width: 200px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-ornament">Văn Minh Việt Sử Hội</div>
+  <h1>Tiền Xu Cổ<br><span>Việt Nam</span></h1>
+  <p>Hiện vật lịch sử — Chính hãng — Có giấy tờ chứng nhận</p>
+  <div class="coin-divider">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="54" stroke="#C9A84C" stroke-width="2"/>
+      <circle cx="60" cy="60" r="46" stroke="#C9A84C" stroke-width="0.5"/>
+      <rect x="47" y="47" width="26" height="26" rx="2" stroke="#C9A84C" stroke-width="1.5"/>
+      <text x="60" y="66" text-anchor="middle" fill="#C9A84C" font-size="18" font-family="serif" font-weight="bold">古</text>
+      <circle cx="60" cy="60" r="58" stroke="#3D2A0A" stroke-width="4"/>
+    </svg>
+  </div>
+</header>
+
+<section class="products-section">
+  <div class="section-title">
+    <p>Bộ Sưu Tập</p>
+    <h2>Sản Phẩm Nổi Bật</h2>
+    <div style="margin-top:14px;"><div class="gold-line"></div></div>
+  </div>
+
+  <div class="products-grid" id="products-grid">
+    <!-- Rendered by JS -->
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="order-form-wrapper">
+      <h3 id="modal-product-name"></h3>
+      <div class="modal-product-price" id="modal-product-price"></div>
+      <div class="form-group">
+        <label>Họ và tên *</label>
+        <input type="text" id="f-name" placeholder="Nguyễn Văn A">
+      </div>
+      <div class="form-group">
+        <label>Số điện thoại *</label>
+        <input type="tel" id="f-phone" placeholder="0901 234 567">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="f-email" placeholder="email@gmail.com">
+      </div>
+      <div class="form-group">
+        <label>Địa chỉ giao hàng *</label>
+        <textarea id="f-address" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố"></textarea>
+      </div>
+      <button class="submit-btn" id="submit-btn" onclick="submitOrder()">Đặt Hàng Ngay</button>
+    </div>
+    <div class="success-msg" id="success-msg">
+      <div class="success-icon">✓</div>
+      <h4>Đặt hàng thành công!</h4>
+      <p>Chúng tôi đã nhận được đơn hàng của bạn.<br>Nhân viên sẽ liên hệ xác nhận trong vòng <strong>1–2 giờ</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Văn Minh Việt Sử Hội</strong> · Chuyên sưu tầm & mua bán tiền cổ chính hãng<br>
+  <span style="font-size:11px;margin-top:6px;display:block;opacity:0.6;">© 2025 · Liên hệ qua form đặt hàng bên trên</span>
+</footer>
+
+<script>
+// =============================================
+// CẤU HÌNH — THAY ĐỔI TẠI ĐÂY
+// =============================================
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+// ← Bạn sẽ thay YOUR_SCRIPT_ID sau khi tạo Apps Script
+
+const PRODUCTS = [
+  {
+    id: 1,
+    name: 'Đồng Xu Khải Định 1 Đồng',
+    era: 'Triều Nguyễn',
+    year: '1916–1925',
+    desc: 'Tiền xu bằng đồng thời vua Khải Định, còn rõ nét chữ Hán và hoa văn rồng phụng cổ điển.',
+    price: 850000,
+  },
+  {
+    id: 2,
+    name: 'Bạch Kim Bảo Đại 5 Xu',
+    era: 'Triều Nguyễn',
+    year: '1925–1945',
+    desc: 'Xu bạch kim thời vua Bảo Đại, kích thước nhỏ, bề mặt còn lưu dấu ấn đúc tiền triều đình.',
+    price: 1200000,
+  },
+  {
+    id: 3,
+    name: 'Đồng Tiền Tự Đức Thông Bảo',
+    era: 'Triều Nguyễn',
+    year: '1848–1883',
+    desc: 'Tiền xu đồng thời Tự Đức, bốn chữ "Tự Đức Thông Bảo" xung quanh lỗ vuông trung tâm.',
+    price: 650000,
+  },
+  {
+    id: 4,
+    name: 'Đồng Xu Minh Mạng Thông Bảo',
+    era: 'Triều Nguyễn',
+    year: '1820–1841',
+    desc: 'Xu đồng thời Minh Mạng, một trong những triều đại hưng thịnh nhất, chất lượng đúc cao.',
+    price: 980000,
+  },
+];
+
+// Render sản phẩm
+function formatPrice(n) {
+  return n.toLocaleString('vi-VN') + 'đ';
+}
+
+function coinSVG(id) {
+  const colors = ['#8B6914','#5A5A5A','#B87333','#4A3728'];
+  const c = colors[(id-1) % colors.length];
+  const chars = ['宣','統','嗣','明'];
+  return `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="60" cy="60" r="52" fill="${c}" opacity="0.15"/>
+    <circle cx="60" cy="60" r="52" stroke="${c}" stroke-width="3" fill="none"/>
+    <circle cx="60" cy="60" r="42" stroke="${c}" stroke-width="1" fill="none" opacity="0.5"/>
+    <rect x="49" y="49" width="22" height="22" rx="1" stroke="${c}" stroke-width="2" fill="var(--parchment)"/>
+    <text x="60" y="66" text-anchor="middle" fill="${c}" font-size="16" font-family="serif" font-weight="bold">${chars[id-1]}</text>
+    <text x="60" y="24" text-anchor="middle" fill="${c}" font-size="7" font-family="serif" letter-spacing="10">·  ·  ·</text>
+    <text x="60" y="100" text-anchor="middle" fill="${c}" font-size="7" font-family="serif" letter-spacing="10">·  ·  ·</text>
+  </svg>`;
+}
+
+const grid = document.getElementById('products-grid');
+PRODUCTS.forEach(p => {
+  grid.innerHTML += `
+  <div class="product-card">
+    <div class="product-img">
+      ${coinSVG(p.id)}
+      <div class="era-badge">${p.year}</div>
+    </div>
+    <div class="product-info">
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <div class="product-footer">
+        <div class="price">${formatPrice(p.price)}<br><span>${p.era}</span></div>
+        <button class="buy-btn" onclick="openModal(${p.id})">Đặt Mua</button>
+      </div>
+    </div>
+  </div>`;
+});
+
+// Modal
+let selectedProduct = null;
+
+function openModal(productId) {
+  selectedProduct = PRODUCTS.find(p => p.id === productId);
+  document.getElementById('modal-product-name').textContent = selectedProduct.name;
+  document.getElementById('modal-product-price').textContent = formatPrice(selectedProduct.price);
+  document.getElementById('order-form-wrapper').style.display = 'block';
+  document.getElementById('success-msg').classList.remove('active');
+  document.getElementById('submit-btn').disabled = false;
+  document.getElementById('modal').classList.add('active');
+  ['f-name','f-phone','f-email','f-address'].forEach(id => document.getElementById(id).value = '');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function submitOrder() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const address = document.getElementById('f-address').value.trim();
+
+  if (!name || !phone || !address) {
+    alert('Vui lòng điền đầy đủ họ tên, số điện thoại và địa chỉ giao hàng.');
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Đang gửi...';
+
+  const payload = {
+    timestamp: new Date().toLocaleString('vi-VN'),
+    product: selectedProduct.name,
+    price: formatPrice(selectedProduct.price),
+    name, phone, email, address,
+    status: 'Mới đặt'
+  };
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    document.getElementById('order-form-wrapper').style.display = 'none';
+    document.getElementById('success-msg').classList.add('active');
+  })
+  .catch(() => {
+    document.getElementById('order-form-wrapper').style.display = 'none';
+    document.getElementById('success-msg').classList.add('active');
+  });
+}
+</script>
+</body>
+</html>
